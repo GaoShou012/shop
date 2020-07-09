@@ -1,0 +1,15 @@
+package models
+
+const (
+	FranchiseesTableName = "franchisees"
+)
+
+type Franchisees struct {
+	Model
+	Status *uint					`json:"status"`
+	Username *string				`json:"username"`
+	Password *string				`json:"password"`
+	Balance *float32				`json:"balance"`
+	WithdrawalTotalAmount *float32	`json:"withdrawalTotalAmount"`
+	WithdrawalTotalTimes *uint		`json:"withdrawalTotalTimes"`
+}

@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+// 用户购物下单服务
+
+package proto;
+
+service UsersOrders {
+	rpc Order(UsersOrdersReq) returns (UsersOrdersRsp) {}
+}
+
+message UsersOrdersGoods {
+    uint64 goodsId = 1;
+    uint64 goodsPiece = 2;
+}
+
+message UsersOrdersReq {
+    uint64 userId = 1;
+    uint64 platformOrderNo = 2;
+    string shopCode = 3;
+    string clientToken = 4;
+    repeated UsersOrdersGoods goods = 5;
+}
+message UsersOrdersRsp {
+    uint64 code = 1;
+    string message = 2;
+    uint64 platformOrderNo = 3;
+    double totalExportPrice = 4;
+}

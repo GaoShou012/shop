@@ -1,0 +1,13 @@
+package api
+
+import "github.com/gin-gonic/gin"
+
+// 获取验证码
+// SessionId
+func GetAuthCode(context *gin.Context) {
+
+}
+
+func Logout(context *gin.Context) {
+
+}

@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package proto;
+
+service Jwt {
+	rpc Encode(JwtEncodeRequest) returns (JwtEncodeResponse) {}
+    rpc Decode(JwtDecodeRequest) returns (JwtDecodeResponse) {}
+}
+
+message JwtUser{
+    int32 id = 1;
+    string username = 2;
+    string nickname = 3;
+    int64 loginTime = 4;
+}
+
+message JwtEncodeRequest {
+    JwtUser user = 1;
+}
+message JwtEncodeResponse {
+    string token = 2;
+}
+
+message JwtDecodeRequest {
+    string token = 1;
+}
+message JwtDecodeResponse {
+    JwtUser user = 2;
+}
+
+
+

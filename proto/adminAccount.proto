@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package proto;
+
+service Jwt {
+	rpc Login(AdminAccountAuthReq) returns (AdminAccountAuthRsp) {}
+	rcp Get(AdminAccountGetReq) return (AdminAccountGetRsp) {}
+}
+
+message JwtUser{
+    int32 id = 1;
+    string username = 2;
+    string nickname = 3;
+    int32 loginTime = 4;
+}
+
+message AdminAccountAuthReq {
+    JwtUser user = 1;
+}
+message AdminAccountAuthRsp {
+    string token = 2;
+}
+
+message AdminAccountGetReq {
+    string token = 1;
+}
+message AdminAccountGetRsp {
+    JwtUser user = 2;
+}
+
+
+

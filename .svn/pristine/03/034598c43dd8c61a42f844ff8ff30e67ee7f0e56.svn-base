@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package proto;
+
+service OrderNo {
+	rpc Gen(OrderNoGenRequest) returns (OrderNoGenResponse) {}
+	rpc Encrypt(OrderNoEncryptReq) returns (OrderNoEncryptRsp) {}
+	rpc Decrypt(OrderNoDecryptReq) returns (OrderNoDecryptRsp) {}
+}
+
+message OrderNoGenRequest {}
+message OrderNoGenResponse {
+    uint64 code = 1;
+    string message = 2;
+    uint64 no = 3;
+}
+
+message OrderNoEncryptFormat {
+    uint64 no = 1;
+    uint64 id = 2;
+    string code = 3;
+    uint64 time = 4;
+    uint64 timeout = 5;
+}
+
+message OrderNoEncryptReq {
+    OrderNoEncryptFormat data = 1;
+}
+message OrderNoEncryptRsp {
+    uint64 code = 1;
+    uint64 message = 2;
+    string token = 3;
+}
+message OrderNoDecryptReq {
+    string token = 1;
+}
+message OrderNoDecryptRsp {
+     uint64 code = 1;
+    uint64 message = 2;
+    OrderNoEncryptFormat data = 3;
+}

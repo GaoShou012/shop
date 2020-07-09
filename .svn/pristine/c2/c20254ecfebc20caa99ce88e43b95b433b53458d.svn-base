@@ -1,0 +1,101 @@
+package backend
+
+import (
+	"fmt"
+	"github.com/app"
+	"github.com/gin-gonic/gin"
+	"github.com/models"
+)
+
+/*
+	属于店铺的 商品类目栏
+*/
+type ApiShopsGoodsTypes struct{}
+
+func (api *ApiShopsGoodsTypes) Insert(ctx *gin.Context) {
+	type _params struct {
+		Sort uint64
+		Icon string
+		Name string
+		Desc string
+	}
+
+	params := _params{}
+	err := ctx.BindJSON(&params)
+	if err != nil {
+		//return
+		app.ResponseError(ctx, err)
+		return
+	}
+
+	newData := models.ShopsGoodsTypesPublic{
+		//Model: models.Model{},
+		Sort: &params.Sort,
+		Name: &params.Name,
+		Icon: &params.Icon,
+		Desc: &params.Desc,
+	}
+
+	res := models.DB.Create(&newData)
+	if res.Error != nil {
+		app.ResponseError(ctx, res.Error)
+		return
+	}
+
+	app.ResponseSuccess(ctx, "添加成功")
+}
+
+func (api *ApiShopsGoodsTypes) Update(ctx *gin.Context) {
+	type _params struct {
+		Id   uint64
+		Sort uint64
+		Icon string
+		Name string
+		Desc string
+	}
+
+	params := _params{}
+	err := ctx.BindJSON(&params)
+	if err != nil {
+		app.ResponseError(ctx, err)
+		return
+	}
+
+	oldData := models.ShopsGoodsTypesPublic{}
+	res := models.DB.First(&oldData, params.Id)
+	if res.Error != nil {
+		if res.RecordNotFound() {
+			app.ResponseError(ctx, fmt.Errorf("ID不存在"))
+		} else {
+			app.ResponseError(ctx, res.Error)
+		}
+		return
+	}
+
+	newData := models.ShopsGoodsTypesPublic{
+		//Model: models.Model{},
+		Sort: &params.Sort,
+		Name: &params.Name,
+		Icon: &params.Icon,
+		Desc: &params.Desc,
+	}
+	res = models.DB.Model(models.ShopsGoodsTypesPublic{Model: models.Model{ID: &params.Id}}).Updates(newData)
+	if res.Error != nil {
+		app.ResponseError(ctx, res.Error)
+		return
+	}
+
+	app.ResponseSuccess(ctx, "更新成功")
+}
+
+func (api *ApiShopsGoodsTypes) Search(ctx *gin.Context) {
+	var total uint64
+	var values []models.ShopsGoodsTypesPublic
+	res := models.DB.Model(models.ShopsGoodsTypesPublic{}).Order("sort desc").Find(&values)
+	if res.Error != nil {
+		app.ResponseError(ctx, res.Error)
+		return
+	}
+
+	app.ResponseSearchSuccess(ctx, total, values)
+}

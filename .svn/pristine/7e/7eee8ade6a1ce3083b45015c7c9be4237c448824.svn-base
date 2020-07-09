@@ -1,0 +1,135 @@
+package backend
+
+import (
+	"github.com/app"
+	"github.com/gin-gonic/gin"
+	"github.com/models"
+	"net/http"
+)
+
+type ApiShopsGoods struct{}
+
+func (api *ApiShopsGoods) Insert(ctx *gin.Context) {
+	var params struct {
+		Status      uint64
+		Sort        uint64
+		GoodsTypeId uint64
+		GoodsId     uint64
+	}
+	err := ctx.BindJSON(&params)
+	if err != nil {
+		app.ResponseError(ctx, err)
+		return
+	}
+
+	newData := models.ShopsGoodsPublic{
+		//Model:       models.Model{},
+		Status:      &params.Status,
+		Sort:        &params.Sort,
+		GoodsTypeId: &params.GoodsTypeId,
+		GoodsId:     &params.GoodsId,
+	}
+	res := models.DB.Create(&newData)
+	if res.Error != nil {
+		app.ResponseError(ctx, res.Error)
+		return
+	}
+
+	app.ResponseSuccess(ctx, "添加成功")
+}
+
+func (api *ApiShopsGoods) Delete(ctx *gin.Context) {
+	var params struct {
+		Id uint64
+	}
+	err := ctx.BindJSON(&params)
+	if err != nil {
+		app.ResponseError(ctx, err)
+		return
+	}
+
+	oldData := models.ShopsGoodsPublic{
+		Model:       models.Model{ID: &params.Id},
+		Sort:        nil,
+		GoodsTypeId: nil,
+		GoodsId:     nil,
+	}
+
+	res := models.DB.Unscoped().Delete(&oldData)
+	if res.Error != nil {
+		app.ResponseError(ctx, res.Error)
+		return
+	}
+
+	app.ResponseSuccess(ctx, "删除成功")
+}
+
+func (api *ApiShopsGoods) Update(ctx *gin.Context) {
+
+}
+
+/*
+	必须匹配商品类型ID
+	分页搜索
+
+	搜索商品类型下的商品列表，所有的店铺是公用同一个显示列表
+	一下是使用视图进行显示
+*/
+func (api *ApiShopsGoods) Search(ctx *gin.Context) {
+	var params struct {
+		GoodsTypeId uint64
+		app.PageParams
+	}
+	err := ctx.BindJSON(&params)
+	if err != nil {
+		app.ResponseError(ctx, err)
+		return
+	}
+	err = params.CheckPageParams()
+	if err != nil {
+		app.ResponseError(ctx, err)
+		return
+	}
+
+	var total uint64
+	var values []models.BackendViewShopsGoodsPublic
+	db := models.DB.Table(models.BackendViewShopsGoodsPublicTable)
+	db = db.Where("goods_type_id=?", params.GoodsTypeId)
+	db.Count(&total)
+	res := db.Order("sort desc").Offset(params.Page * params.PageSize).Limit(params.PageSize).Debug().Find(&values)
+	if res.Error != nil {
+		app.ResponseError(ctx, res.Error)
+		return
+	}
+
+	app.ResponseSearchSuccess(ctx, total, values)
+}
+
+func (api *ApiShopsGoods) IsExist(context *gin.Context) {
+	goodsIdList, err := app.ParseIdListFromPost(context, "goodsIdList")
+	if err != nil {
+		app.ResponseError(context, err)
+		return
+	}
+
+	var existsList []bool
+	for _, id := range goodsIdList {
+		res := models.DB.Table(models.ShopsGoodsTableName).Find(&models.ShopsGoods{}, id)
+		if res.Error != nil {
+			if res.RecordNotFound() {
+				existsList = append(existsList, false)
+			} else {
+				app.ResponseError(context, res.Error)
+				return
+			}
+		} else {
+			existsList = append(existsList, true)
+		}
+	}
+
+	context.JSON(http.StatusOK, gin.H{
+		"code":    0,
+		"message": "查询成功",
+		"list":    existsList,
+	})
+}

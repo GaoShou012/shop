@@ -1,0 +1,65 @@
+package backend
+
+import (
+	"github.com/app"
+	"github.com/gin-gonic/gin"
+	"github.com/models"
+)
+
+type ApiShopsGoodsStocks struct {
+}
+
+func (api *ApiShopsGoodsStocks) Search(ctx *gin.Context) {
+	var params struct {
+		ShopId      uint64
+		GoodsTypeId uint64
+		app.PageParams
+	}
+	err := ctx.BindJSON(&params)
+	if err != nil {
+		app.ResponseError(ctx, err)
+		return
+	}
+	err = params.CheckPageParams()
+	if err != nil {
+		app.ResponseError(ctx, err)
+		return
+	}
+
+	total := 0
+
+	// 查询库存
+	var goodsList []models.BackendViewShopsGoodsPublic
+	db := models.DB.Table(models.BackendViewShopsGoodsPublicTable).Where("goods_type_id = ?", params.GoodsTypeId)
+	db.Count(&total)
+	res := db.Offset(params.Offset()).Limit(params.PageSize).Find(&goodsList)
+	if res.Error != nil {
+		app.ResponseError(ctx, res.Error)
+		return
+	}
+
+	type complex struct {
+		models.BackendViewShopsGoodsPublic
+		GoodsStock uint64 `json:"goodsStock"`
+	}
+	complexList := make([]complex, 0, len(goodsList))
+
+	for _, row := range goodsList {
+		c := complex{BackendViewShopsGoodsPublic: row, GoodsStock: 0}
+
+		stock := models.ShopsGoodsStocks{}
+		res := models.DB.Where("shop_id = ? and goods_id = ?", params.ShopId, row.GoodsId).Find(&stock)
+		if res.Error == nil {
+			c.GoodsStock = *stock.Stock
+		}else{
+			if !res.RecordNotFound() {
+				app.ResponseError(ctx,res.Error)
+				return
+			}
+		}
+
+		complexList = append(complexList, c)
+	}
+
+	app.ResponseSearchSuccess(ctx, total, complexList)
+}

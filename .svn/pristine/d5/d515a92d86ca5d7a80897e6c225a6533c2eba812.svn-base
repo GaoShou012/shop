@@ -1,0 +1,102 @@
+package backend
+
+import (
+	"crypto/md5"
+	"encoding/hex"
+	"fmt"
+	"github.com/app"
+	"github.com/gin-gonic/gin"
+	"github.com/models"
+)
+
+type ApiFranchisees struct {}
+
+func (api *ApiFranchisees) Insert(context *gin.Context) {
+	username := context.PostForm("username")
+	password := context.PostForm("password")
+	hash := md5.New()
+	hash.Write([]byte(password))
+	passwordHash := hex.EncodeToString(hash.Sum(nil))
+
+	newData := &models.Franchisees{
+		Username: &username,
+		Password: &passwordHash,
+	}
+	res := models.DB.Model(&models.Franchisees{}).Create(newData)
+	if res.Error != nil {
+		app.ResponseError(context,res.Error)
+		return
+	}
+
+	app.ResponseSuccess(context,"创建加盟商账号成功")
+}
+
+func (api *ApiFranchisees) Update(context *gin.Context) {
+	username := context.PostForm("username")
+	password := context.PostForm("password")
+	hash := md5.New()
+	hash.Write([]byte(password))
+	passwordHash := hex.EncodeToString(hash.Sum(nil))
+
+	newData := &models.Franchisees{
+		//Model:    models.Model{},
+		//Username: nil,
+		Password: &passwordHash,
+	}
+	res := models.DB.Model(models.Franchisees{}).Where("username = ?",username).Updates(newData)
+	if res.Error != nil {
+		app.ResponseError(context,res.Error)
+		return
+	}
+	if res.RowsAffected != 1 {
+		app.ResponseError(context,fmt.Errorf("更新失败"))
+		return
+	}
+
+	app.ResponseSuccess(context,"更新成功")
+}
+
+func (api *ApiFranchisees) Search(context *gin.Context) {
+	id := context.PostForm("id")
+	username := context.PostForm("username")
+
+	var total uint64 = 0
+	var values []models.Franchisees
+	db := models.DB.Model(models.Franchisees{})
+	if id != "" {
+		db = db.Where("id = ?",id)
+	}
+	if username != "" {
+		db = db.Where("username = ?",username)
+	}
+	db.Count(&total)
+	res := db.Find(&values)
+	if res.Error != nil {
+		app.ResponseError(context,res.Error)
+		return
+	}
+	app.ResponseSearchSuccess(context,total,values)
+}
+
+func (api *ApiFranchisees) Login(context *gin.Context) {
+	username := context.PostForm("username")
+	password := context.PostForm("password")
+	hash := md5.New()
+	hash.Write([]byte(password))
+	passwordHash := hash.Sum(nil)
+
+	db := models.DB.Model(models.Franchisees{})
+	res := db.Where("username = ? and password = ?",username,passwordHash).Find(&models.Franchisees{})
+	if res.Error != nil {
+		if res.RecordNotFound() {
+			app.ResponseError(context,fmt.Errorf("账号或密码错误"))
+		}else{
+			app.ResponseError(context,res.Error)
+		}
+		return
+	}
+}
+
+func (api *ApiFranchisees) Withdrawal(context *gin.Context) {
+
+}

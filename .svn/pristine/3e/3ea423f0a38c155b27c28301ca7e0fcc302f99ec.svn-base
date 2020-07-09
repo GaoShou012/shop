@@ -1,0 +1,28 @@
+package models
+
+const (
+	BackendViewShopsGoodsPublicTable = "backend_view_shops_goods_public"
+)
+
+type BackendViewShopsGoodsPublic struct {
+	Id               uint64  `json:"id"`
+	Sort             uint64  `json:"sort"`
+	GoodsTypeId      uint64  `json:"goodsTypeId"`
+	GoodsId          uint64  `json:"goodsId"`
+	GoodsName        string  `json:"goodsName"`
+	GoodsImportPrice float32 `json:"goodsImportPrice"`
+	GoodsExportPrice float32 `json:"goodsExportPrice"`
+	GoodsImage       string  `json:"goodsImage"`
+	GoodsDesc        string  `json:"goodsDesc"`
+}
+
+type BackendViewShopsGoodsStocks struct {
+	Id          string  `json:"id"`
+	Status      uint64  `json:"status"`
+	Stock       uint64  `json:"stock"`
+	Name        string  `json:"name"`
+	ImportPrice float32 `json:"importPrice"`
+	ExportPrice float32 `json:"exportPrice"`
+	Image       string  `json:"image"`
+	Desc        string  `json:"desc"`
+}

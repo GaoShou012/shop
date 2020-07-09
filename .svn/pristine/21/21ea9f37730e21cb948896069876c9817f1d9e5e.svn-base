@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="50b8a0df-58db-4178-acb6-e89c53bb2a07" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="shopServer" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" path="C:\Go" />
+  <component name="ProjectId" id="1cpjMicIqQK2sy8TnGdlSDqiQhP" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoProjectSettingsConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\work\golang\shopServer" />
+      <recent name="E:\work\golang\shopServer\routers" />
+      <recent name="E:\work\golang\shopServer\routers\api" />
+      <recent name="E:\work\golang\shopServer\study\day1" />
+      <recent name="E:\work\golang\shopServer\protoBuf" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\work\golang\shopServer\app" />
+      <recent name="E:\work\golang\shopServer\lib" />
+      <recent name="E:\work\golang\shopServer" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="shopServer" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/main.go" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build main.go" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR,EXPORTABILITY_SORTER,Show package structure" />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+    <proxy>https://goproxy.cn</proxy>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1007" y="402" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1592162670376">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1007" y="402" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1592162670376" />
+    <state x="1033" y="256" key="#com.intellij.ide.util.MemberChooser" timestamp="1592504427924">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1033" y="256" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1592504427924" />
+    <state x="1083" y="332" key="FileChooserDialogImpl" timestamp="1592487938641">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1083" y="332" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1592487938641" />
+    <state width="1503" height="573" key="GridCell.Tab.0.bottom" timestamp="1592523159791">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1503" height="573" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592523159791" />
+    <state width="1503" height="573" key="GridCell.Tab.0.center" timestamp="1592523159791">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1503" height="573" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592523159791" />
+    <state width="1503" height="573" key="GridCell.Tab.0.left" timestamp="1592523159791">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1503" height="573" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592523159791" />
+    <state width="1503" height="573" key="GridCell.Tab.0.right" timestamp="1592523159791">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1503" height="573" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592523159791" />
+    <state x="764" y="221" key="SettingsEditor" timestamp="1592795098703">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="764" y="221" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1592795098703" />
+    <state x="277" y="229" width="1072" height="657" key="dock-window-1" timestamp="1592692609559">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="277" y="229" width="1072" height="657" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1592692609559" />
+    <state x="919" y="264" width="997" height="773" key="dock-window-10" timestamp="1592156617199">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="919" y="264" width="997" height="773" key="dock-window-10/0.0.1920.1040@0.0.1920.1040" timestamp="1592156617199" />
+    <state x="35" y="109" width="997" height="811" key="dock-window-11" timestamp="1592184201007">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="35" y="109" width="997" height="811" key="dock-window-11/0.0.1920.1040@0.0.1920.1040" timestamp="1592184201007" />
+    <state x="23" y="100" width="927" height="928" key="dock-window-12" timestamp="1592179220586">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="23" y="100" width="927" height="928" key="dock-window-12/0.0.1920.1040@0.0.1920.1040" timestamp="1592179220586" />
+    <state x="6" y="203" width="909" height="883" key="dock-window-13" timestamp="1592184104176">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="6" y="203" width="909" height="883" key="dock-window-13/0.0.1920.1040@0.0.1920.1040" timestamp="1592184104176" />
+    <state x="-30" y="514" width="1061" height="1008" key="dock-window-14" timestamp="1592249503483">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-30" y="514" width="1061" height="1008" key="dock-window-14/0.0.1920.1040@0.0.1920.1040" timestamp="1592249503483" />
+    <state x="559" y="161" width="1030" height="799" key="dock-window-15" timestamp="1592294590977">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="559" y="161" width="1030" height="799" key="dock-window-15/0.0.1920.1040@0.0.1920.1040" timestamp="1592294590977" />
+    <state x="-9" y="78" width="1030" height="799" key="dock-window-16" timestamp="1592294232940">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-9" y="78" width="1030" height="799" key="dock-window-16/0.0.1920.1040@0.0.1920.1040" timestamp="1592294232940" />
+    <state x="0" y="0" width="933" height="830" key="dock-window-17" timestamp="1592317368706">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="0" y="0" width="933" height="830" key="dock-window-17/0.0.1920.1040@0.0.1920.1040" timestamp="1592317368706" />
+    <state x="64" y="71" width="909" height="832" key="dock-window-18" timestamp="1592335725492">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="64" y="71" width="909" height="832" key="dock-window-18/0.0.1920.1040@0.0.1920.1040" timestamp="1592335725492" />
+    <state x="961" y="43" width="957" height="954" key="dock-window-19" timestamp="1592339272599">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="961" y="43" width="957" height="954" key="dock-window-19/0.0.1920.1040@0.0.1920.1040" timestamp="1592339272599" />
+    <state x="0" y="111" width="1074" height="957" key="dock-window-2" timestamp="1592774598284">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="0" y="111" width="1074" height="957" key="dock-window-2/0.0.1920.1040@0.0.1920.1040" timestamp="1592774598284" />
+    <state x="0" y="0" width="957" height="798" key="dock-window-20" timestamp="1592348262575">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="0" y="0" width="957" height="798" key="dock-window-20/0.0.1920.1040@0.0.1920.1040" timestamp="1592348262575" />
+    <state x="30" y="28" width="957" height="798" key="dock-window-21" timestamp="1592353791676">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="30" y="28" width="957" height="798" key="dock-window-21/0.0.1920.1040@0.0.1920.1040" timestamp="1592353791676" />
+    <state x="231" y="38" width="984" height="897" key="dock-window-22" timestamp="1592354985587">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="231" y="38" width="984" height="897" key="dock-window-22/0.0.1920.1040@0.0.1920.1040" timestamp="1592354985587" />
+    <state x="-2" y="176" width="1105" height="652" key="dock-window-23" timestamp="1592388235516">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-2" y="176" width="1105" height="652" key="dock-window-23/0.0.1920.1040@0.0.1920.1040" timestamp="1592388235516" />
+    <state x="0" y="0" width="1048" height="700" key="dock-window-24" timestamp="1592392367790">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="0" y="0" width="1048" height="700" key="dock-window-24/0.0.1920.1040@0.0.1920.1040" timestamp="1592392367790" />
+    <state x="5" y="422" width="1217" height="620" key="dock-window-25" timestamp="1592407168787">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="5" y="422" width="1217" height="620" key="dock-window-25/0.0.1920.1040@0.0.1920.1040" timestamp="1592407168787" />
+    <state x="-79" y="19" width="1045" height="992" key="dock-window-26" timestamp="1592413231360">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-79" y="19" width="1045" height="992" key="dock-window-26/0.0.1920.1040@0.0.1920.1040" timestamp="1592413231360" />
+    <state x="39" y="142" width="840" height="895" key="dock-window-27" timestamp="1592478789521">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="39" y="142" width="840" height="895" key="dock-window-27/0.0.1920.1040@0.0.1920.1040" timestamp="1592478789521" />
+    <state x="-38" y="204" width="1228" height="814" key="dock-window-28" timestamp="1592437603415">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-38" y="204" width="1228" height="814" key="dock-window-28/0.0.1920.1040@0.0.1920.1040" timestamp="1592437603415" />
+    <state x="0" y="312" width="1228" height="814" key="dock-window-29" timestamp="1592437691929">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="0" y="312" width="1228" height="814" key="dock-window-29/0.0.1920.1040@0.0.1920.1040" timestamp="1592437691929" />
+    <state x="51" y="200" width="1003" height="761" key="dock-window-3" timestamp="1591859624076">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="51" y="200" width="1003" height="761" key="dock-window-3/0.0.1920.1040@0.0.1920.1040" timestamp="1591859624076" />
+    <state x="0" y="312" width="1228" height="814" key="dock-window-30" timestamp="1592471555502">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="0" y="312" width="1228" height="814" key="dock-window-30/0.0.1920.1040@0.0.1920.1040" timestamp="1592471555502" />
+    <state x="879" y="5" width="1042" height="819" key="dock-window-31" timestamp="1592505976330">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="879" y="5" width="1042" height="819" key="dock-window-31/0.0.1920.1040@0.0.1920.1040" timestamp="1592505976330" />
+    <state x="32" y="154" width="1363" height="890" key="dock-window-4" timestamp="1592126580530">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="32" y="154" width="1363" height="890" key="dock-window-4/0.0.1920.1040@0.0.1920.1040" timestamp="1592126580530" />
+    <state x="287" y="99" width="990" height="717" key="dock-window-5" timestamp="1591964440457">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="287" y="99" width="990" height="717" key="dock-window-5/0.0.1920.1040@0.0.1920.1040" timestamp="1591964440457" />
+    <state x="840" y="214" width="990" height="717" key="dock-window-6" timestamp="1591968306224">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="840" y="214" width="990" height="717" key="dock-window-6/0.0.1920.1040@0.0.1920.1040" timestamp="1591968306224" />
+    <state x="693" y="102" width="990" height="717" key="dock-window-7" timestamp="1591968588122">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="693" y="102" width="990" height="717" key="dock-window-7/0.0.1920.1040@0.0.1920.1040" timestamp="1591968588122" />
+    <state x="363" y="296" width="948" height="802" key="dock-window-8" timestamp="1592132313559">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="363" y="296" width="948" height="802" key="dock-window-8/0.0.1920.1040@0.0.1920.1040" timestamp="1592132313559" />
+    <state x="400" y="235" width="997" height="832" key="dock-window-9" timestamp="1592142987622">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="400" y="235" width="997" height="832" key="dock-window-9/0.0.1920.1040@0.0.1920.1040" timestamp="1592142987622" />
+    <state x="886" y="262" width="672" height="678" key="search.everywhere.popup" timestamp="1592486174688">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="886" y="262" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1592486174688" />
+  </component>
+</project>

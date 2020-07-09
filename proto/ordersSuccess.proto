@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+// 用户购物订单，服务成功服务
+
+package proto;
+
+service UsersOrdersSuccess {
+	rpc Order(UsersOrdersSuccessReq) returns (UsersOrdersSuccessRsp) {}
+}
+
+message UsersOrdersSuccessReq {
+    uint64 platformOrderNo = 1;
+    uint64 status = 2;
+}
+message UsersOrdersSuccessRsp {
+    uint64 code = 1;
+    string message = 2;
+}

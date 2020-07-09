@@ -1,0 +1,12 @@
+db:
+  user: root
+  password: Forever634312.
+  host: 192.168.0.200
+  port: 3306
+  defaultDatabase: server
+
+rabbitmq:
+  user: admin
+  password:
+  host: 192.168.0.200
+  port: 5672

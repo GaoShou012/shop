@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+// 用户购物下单服务
+
+package proto;
+
+service Test {
+	rpc Ask(TestReq) returns (TestRsp) {}
+}
+
+message TestReq {
+    string message = 1;
+}
+message TestRsp {
+    string message = 1;
+}

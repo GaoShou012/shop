@@ -1,0 +1,77 @@
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/app"
+	"github.com/micro/go-micro/v2"
+	microconfig "github.com/micro/go-micro/v2/config"
+	microetcd "github.com/micro/go-micro/v2/config/source/etcd"
+	"github.com/proto"
+)
+
+type logger struct {
+	serviceLevel int
+}
+func (s *logger) Push(ctx context.Context, req *proto.LoggerPushRequest, rsp *proto.LoggerPushResponse) error {
+
+	fmt.Println("i am logger service")
+
+	return nil
+}
+
+func (s *logger) Watch() {
+	// 监听服务等级
+	conf,err := microconfig.NewConfig()
+	if err != nil {
+		panic(err)
+	}
+
+	src := microetcd.NewSource(
+		microetcd.WithAddress(app.EtcdAddress()),
+		)
+
+	confMap := conf.Map()
+	fmt.Printf("conf map=%v\n",confMap)
+
+	for {
+		watcher,err := conf.Watch("micro","config","service","level")
+		if err != nil {
+			panic(err)
+		}
+
+		watcher.Next()
+
+		err = conf.Load(src)
+		if err != nil {
+			panic(err)
+		}
+
+		val := conf.Get("micro","config","service","level")
+		fmt.Printf("the val is %v\n",val.Bytes())
+
+		watcher.Stop()
+	}
+}
+
+func main() {
+	etcdRegistry := app.EtcdRegistry()
+
+	// Create a new service. Optionally include some options here.
+	service := micro.NewService(
+		micro.Name("micro.service.logger"),
+		micro.Registry(etcdRegistry),
+		)
+
+	// Init will parse the command line flags.
+	service.Init()
+
+	// Register handler
+	proto.RegisterLoggerHandler(service.Server(),new(logger))
+
+	if err := service.Run(); err != nil {
+		fmt.Println(err)
+	}
+}
+
+

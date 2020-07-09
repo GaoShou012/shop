@@ -1,0 +1,31 @@
+package models
+
+import "time"
+
+const (
+	ConsumersOrderTableName = "consumers_orders"
+)
+
+type ConsumersOrders struct {
+	Model
+	ConsumerId *uint64			`json:"consumerId"`
+	OrderNo *uint64				`json:"orderNo"`
+	Status *uint64				`json:"status"`
+	Total *float32				`json:"total"`
+	ShopId *uint64				`json:"shopId"`
+	ShopAddr *string			`json:"shopAddr"`
+	ShopCode *string			`json:"shopCode"`
+	PaymentAt *time.Time		`json:"paymentAt"`
+}
+
+type UsersOrders struct {
+	Model
+	ConsumerId *uint64			`json:"consumerId"`
+	OrderNo *uint64				`json:"orderNo"`
+	Status *uint64				`json:"status"`
+	Total *float32				`json:"total"`
+	ShopId *uint64				`json:"shopId"`
+	ShopAddr *string			`json:"shopAddr"`
+	ShopCode *string			`json:"shopCode"`
+	PaymentAt *time.Time		`json:"paymentAt"`
+}

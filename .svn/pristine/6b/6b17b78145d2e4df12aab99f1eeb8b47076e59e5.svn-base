@@ -1,0 +1,127 @@
+package main
+
+import (
+	_ "github.com/go-sql-driver/mysql"
+
+	"context"
+	"fmt"
+	"github.com/app"
+	"github.com/jinzhu/gorm"
+	"github.com/models"
+	"github.com/proto"
+)
+
+type UsersOrdersHandler struct {
+	DB *gorm.DB
+}
+
+func (s *UsersOrdersHandler) Order(ctx context.Context, req *proto.UsersOrdersReq, rsp *proto.UsersOrdersRsp) error {
+	// 检查订单是否存在
+	res := s.DB.Model(models.UsersOrders{}).Where(&models.UsersOrders{OrderNo:&req.OrderNo}).First(&models.UsersOrders{})
+	if res.Error != nil {
+		if res.RecordNotFound() {
+		}else{
+			rsp.Code = 1
+			rsp.Message = "订单已经存在"
+			return nil
+		}
+	}
+
+	// 查询商店是否存在
+	shop := models.Shops{}
+	res = s.DB.Model(models.Shops{}).First(&shop,req.ShopId)
+	if res.Error != nil {
+		rsp.Code = 1
+		rsp.Message = fmt.Sprintf("商店不存在(%d)",req.ShopId)
+		return nil
+	}
+
+	// 查询商品是否存在
+	// 并查询所有商品的信息
+	if len(req.GoodsId) <= 0 {
+		rsp.Code = 1
+		rsp.Message = "商品列表不能为空"
+		return nil
+	}
+	var allGoods []models.ShopsGoods
+	for _,v := range req.GoodsId {
+		goods := models.ShopsGoods{}
+		res := s.DB.Model(models.ShopsGoods{}).First(&goods,v)
+		if res.Error != nil {
+			if res.RecordNotFound() {
+				rsp.Code = 1
+				rsp.Message = fmt.Sprintf("商品ID(%d)不存在",v)
+				return nil
+			}else{
+				return res.Error
+			}
+		}
+		allGoods = append(allGoods,goods)
+	}
+
+	// 计算消费总额
+	var cost float32
+	for _,v := range allGoods {
+		cost += *v.Price
+	}
+
+	// 事务操作
+	{
+		tx := s.DB.Begin()
+
+		// 保存订单信息
+		order := models.UsersOrders{
+			ConsumerId: &req.ConsumerId,
+			OrderNo:    &req.OrderNo,
+			Status:     nil,
+			Total:      &cost,
+			ShopId:     shop.ID,
+			ShopAddr:   shop.ShopAddr,
+			ShopCode:   shop.ShopCode,
+			PaymentAt:  nil,
+		}
+		res := tx.Create(&order)
+		if res.Error != nil {
+			tx.Rollback()
+			return res.Error
+		}
+
+		// 订单明细
+		for _,goods := range allGoods {
+			detail := models.UsersOrdersDetails{
+				OrderNo:    &req.OrderNo,
+				GoodsId:    goods.ID,
+				GoodsName:  goods.GoodsName,
+				GoodsImage: goods.GoodsImage,
+			}
+			res := tx.Create(&detail)
+			if res.Error != nil {
+				tx.Rollback()
+				return res.Error
+			}
+		}
+
+		tx.Commit()
+	}
+
+	rsp.Cost = cost
+	return nil
+}
+
+func main() {
+	database := app.Mysql{}
+	db,err := database.GormFromEtcd()
+	if err != nil {
+		panic(err)
+	}
+
+	service := app.NewService("micro.service.users")
+	serviceHandler := UsersOrdersHandler{DB:db}
+	err = proto.RegisterUsersOrdersHandler(service.Server(),&serviceHandler)
+	if err != nil {
+		panic(err)
+	}
+	if err := service.Run(); err != nil {
+		panic(err)
+	}
+}

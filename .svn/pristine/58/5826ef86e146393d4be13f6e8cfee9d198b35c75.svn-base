@@ -1,0 +1,68 @@
+package app
+
+import (
+	"github.com/micro/go-micro/v2"
+	microconfig "github.com/micro/go-micro/v2/config"
+	microetcd "github.com/micro/go-micro/v2/config/source/etcd"
+	"github.com/micro/go-micro/v2/registry"
+	"github.com/micro/go-micro/v2/registry/etcd"
+	"sync"
+	"time"
+)
+
+var etcdRegistry registry.Registry
+var etcdRegistryInit sync.Once
+func EtcdRegistry() registry.Registry {
+	etcdRegistryInit.Do(func() {
+		r := etcd.NewRegistry(
+			registry.Addrs(""),
+			)
+		etcdRegistry = r
+	})
+
+	return etcdRegistry
+}
+
+func EtcdAddress() string {
+	return "127.0.0.1:2379"
+}
+
+func NewService(name string) micro.Service {
+	// etcd registry
+	r := EtcdRegistry()
+
+	// Create a new service. Optionally include some options here.
+	service := micro.NewService(
+		micro.Name(name),
+		micro.Registry(r),
+		micro.RegisterTTL(time.Second*10),
+		)
+
+	// Init will parse the command line flags.
+	service.Init()
+
+	return service
+}
+
+var serviceInit sync.Once
+var service micro.Service
+func Service() micro.Service {
+	serviceInit.Do(func() {
+		service = micro.NewService(micro.Registry(EtcdRegistry()))
+		service.Init()
+	})
+	return service
+}
+
+func EtcdSource() (conf microconfig.Config,err error) {
+	conf,err = microconfig.NewConfig()
+	if err != nil {
+		return
+	}
+	src := microetcd.NewSource(microetcd.WithAddress(EtcdAddress()))
+	err = conf.Load(src)
+	if err != nil {
+		return
+	}
+	return
+}

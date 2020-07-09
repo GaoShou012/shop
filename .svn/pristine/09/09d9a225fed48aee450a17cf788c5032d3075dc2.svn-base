@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package proto;
+
+service Logger {
+    rpc Push(LoggerPushRequest) returns (LoggerPushResponse) {}
+}
+
+message LoggerPushRequest {
+    string type = 1;
+    string time = 2;
+    string path = 3;
+    string content = 4;
+}
+
+message LoggerPushResponse {
+    string id = 1;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package proto;
+
+service BrokerMsg {
+	rpc Order(BrokerMsgReq) returns (BrokerMsgRsp) {}
+}
+
+message BrokerMsgReq {
+    string message = 1;
+}
+message BrokerMsgRsp {
+    string message = 1;
+}
